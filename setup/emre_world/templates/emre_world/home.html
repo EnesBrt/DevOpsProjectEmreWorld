@@ -1,0 +1,183 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Le Monde d'Emre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .navbar-item::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: -100%;
+            background: red;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .navbar-item:hover::before {
+            left: 0;
+        }
+
+        .center-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 52px); /* 100vh représente la hauteur de la fenêtre du navigateur et 52px est la hauteur du navbar. Ajustez ces valeurs en conséquence si nécessaire. */
+            margin-top: 52px; /* Ajustez cette valeur en conséquence si nécessaire. */
+        }
+
+        .section {
+            max-height: 100vh;
+            overflow: hidden; /* Hide any overflowing content */
+        }
+
+        .home-title {
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        /* Modify the button style */
+        .normal-button {
+            background-color: red;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px; 
+        }
+
+        .normal-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: skewX(-45deg);
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .normal-button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .majestic-effect {
+            animation: shake 0.5s;
+            animation-iteration-count: 1;
+        }
+        
+        
+        /* Fix the navbar at the top */
+        .navbar-fixed-top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        body {
+            padding-top: 60px;
+            background-image: url("{% static 'images/metal.jpg' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+    
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top navbar-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <h1 class="title is-4">Le Monde d'Emre</h1>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="/about">
+                    About Me
+                </a>
+
+                <a class="navbar-item" href="/reims">
+                    La Ville de Reims
+                </a>
+
+                <a class="navbar-item" href="/metallurgie">
+                    La Métallurgie
+                </a>
+
+                <a class="navbar-item" href="/entreprise">
+                    L'Entreprise
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container center-container">
+            <h1 class="home-title">Bievenue dans le monde d'emre !</h1>
+            <button class="normal-button" onclick="window.location.href='/about'">Entrez dans mon monde !</button>
+        </div>
+    </section>
+
+    <script>
+    var links = document.querySelectorAll('.navbar-item');
+
+    links.forEach(function(link) {
+        link.addEventListener('mouseover', function() {
+            this.classList.add('underline-animation');
+        });
+    
+        link.addEventListener('mouseout', function() {
+            this.classList.remove('underline-animation');
+        });
+    });
+
+    var button = document.querySelector('.normal-button');
+
+    button.addEventListener('mouseover', function() {
+        this.classList.add('underline-animation');
+    });
+
+    button.addEventListener('mouseout', function() {
+        this.classList.remove('underline-animation');
+    });
+    </script>
+</body>
+</html>
