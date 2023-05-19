@@ -40,8 +40,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: calc(100vh - 52px); /* 100vh représente la hauteur de la fenêtre du navigateur et 52px est la hauteur du navbar. Ajustez ces valeurs en conséquence si nécessaire. */
-            margin-top: 52px; /* Ajustez cette valeur en conséquence si nécessaire. */
+            height: calc(100vh - 60px); /* Adjusted value */
+            margin-top: 52px; /* Adjust this value as necessary */
         }
 
         .section {
@@ -52,6 +52,8 @@
         .home-title {
             color: white;
             font-size: 2.5rem;
+            margin-bottom: 80px;  /* Adjust this value as needed */
+            font-weight: bold;
         }
         
         /* Modify the button style */
@@ -61,24 +63,24 @@
             border: none;
             padding: 10px 20px;
             cursor: pointer;
-            border-radius: 20px; 
+            border-radius: 20px;
+            font-weight: bold; 
         }
 
-        .normal-button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: skewX(-45deg);
-            transition: all 0.5s ease-in-out;
+        .normal-button {
+            background-color: red;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.5s; /* add this line */
         }
         
-        .normal-button:hover::before {
-            left: 100%;
+        .normal-button:hover {
+            box-shadow: 0 0 30px #ff0000; /* add this line */
         }
+        
 
         @keyframes shake {
             0% { transform: translate(1px, 1px) rotate(0deg); }
@@ -109,12 +111,16 @@
         }
 
         body {
-            padding-top: 60px;
-            background-image: url("{% static 'images/metal.jpg' %}");
+            background-image: url("{% static 'images/fire.png' %}");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
+            overflow-y: hidden; /* Disable vertical scroll */
+            height: 100vh; /* Set body height to viewport height */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
+        
 
     
         
@@ -131,7 +137,7 @@
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
                 <a class="navbar-item" href="/about">
-                    About Me
+                    A propops de moi
                 </a>
 
                 <a class="navbar-item" href="/reims">
@@ -151,7 +157,7 @@
 
     <section class="section">
         <div class="container center-container">
-            <h1 class="home-title">Bievenue dans le monde d'emre !</h1>
+            <h1 class="home-title">Bienvenue dans le monde d'emre !</h1>
             <button class="normal-button" onclick="window.location.href='/about'">Entrez dans mon monde !</button>
         </div>
     </section>
@@ -167,16 +173,6 @@
         link.addEventListener('mouseout', function() {
             this.classList.remove('underline-animation');
         });
-    });
-
-    var button = document.querySelector('.normal-button');
-
-    button.addEventListener('mouseover', function() {
-        this.classList.add('underline-animation');
-    });
-
-    button.addEventListener('mouseout', function() {
-        this.classList.remove('underline-animation');
     });
     </script>
 </body>

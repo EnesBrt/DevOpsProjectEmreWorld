@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Le Monde d'Emre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <style>
+        .navbar-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .navbar-item::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: -100%;
+            background: red;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .navbar-item:hover::before {
+            left: 0;
+        }
+        
+        .navbar-fixed-top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        body {
+            padding-top: 60px;
+        }
+        
+        .article {
+            width: 60%;
+            margin: 0 auto;
+            font-family: 'Merriweather', 'Georgia', serif;
+        }
+        
+        .article-header {
+            text-align: center;
+        }
+        
+        .article-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 0;
+        }
+        
+        .article-header h2 {
+            font-size: 1.5em;
+            color: #999;
+            margin-top: 0;
+        }
+        
+        .article-header img {
+            width: 100%;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+        
+        .article-content p {
+            font-size: 1.2em;
+            line-height: 1.6em;
+            color: #333;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top navbar-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <h1 class="title is-4">Le Monde d'Emre</h1>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item {% if request.path == '/about' %}active{% endif %}" href="/about">
+                    A propos de moi
+                </a>
+
+                <a class="navbar-item {% if request.path == '/reims' %}active{% endif %}" href="/reims">
+                    La Ville de Reims
+                </a>
+
+                <a class="navbar-item {% if request.path == '/metallurgie' %}active{% endif %}" href="/metallurgie">
+                    La Métallurgie
+                </a>
+
+                <a class="navbar-item {% if request.path == '/entreprise' %}active{% endif %}" href="/entreprise">
+                    L'Entreprise
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <script>
+    // Votre code JavaScript ici
+    var links = document.querySelectorAll('.navbar-item');
+
+    links.forEach(function(link) {
+        link.addEventListener('mouseover', function() {
+            this.classList.add('underline-animation');
+        });
+    
+        link.addEventListener('mouseout', function() {
+            this.classList.remove('underline-animation');
+        });
+    });
+    </script>
+</body>
+</html>

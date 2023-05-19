@@ -1,0 +1,18 @@
+{% extends "emre_world/base.html" %}
+
+{% block content %}
+
+    {% for article in articles %}
+        <div class="article">
+            <div class="article-header">
+                <h1>{{ article.title }}</h1>
+                <h2>{{ article.subtitle }}</h2>
+                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+            </div>
+            <div class="article-content">
+                <p>{{ article.content }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
