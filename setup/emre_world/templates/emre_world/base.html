@@ -1,5 +1,3 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +26,7 @@
             left: 0;
         }
         
-        .navbar-fixed-top {
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
@@ -36,7 +34,7 @@
         }
         
         body {
-            padding-top: 60px;
+            padding-top: 3.25rem;  /* ajusté pour Bulma */
         }
         
         .article {
@@ -72,33 +70,52 @@
             color: #333;
         }
         
+        /* Styles personnalisés */
+        .navbar {
+            background: linear-gradient(to right, lightblue, blue);  /* Gradient from light blue to dark blue */
+        }
+        
+        .navbar-item a {
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .navbar-item:hover,
+        .navbar-item.is-hovered,
+        .navbar-item:focus,
+        .navbar-item.is-focused {
+            background-color: #209bed !important;
+        }
+        footer.footer {
+            margin-top: 5rem; /* Ajoute une marge supérieure de 2rem */
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top navbar-fixed-top" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="/">
+            <a class="navbar-item has-text-white" href="/">
                 <h1 class="title is-4">Le Monde d'Emre</h1>
             </a>
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item {% if request.path == '/about' %}active{% endif %}" href="/about">
+                <a class="navbar-item has-text-white {% if request.path == 'about/' %}active{% endif %}" href="/about/">
                     A propos de moi
                 </a>
-
-                <a class="navbar-item {% if request.path == '/reims' %}active{% endif %}" href="/reims">
+                
+                <a class="navbar-item has-text-white {% if request.path == 'reims/' %}active{% endif %}" href="/reims/">
                     La Ville de Reims
                 </a>
-
-                <a class="navbar-item {% if request.path == '/metallurgie' %}active{% endif %}" href="/metallurgie">
+                
+                <a class="navbar-item has-text-white {% if request.path == 'metallurgie/' %}active{% endif %}" href="/metallurgie/">
                     La Métallurgie
                 </a>
-
-                <a class="navbar-item {% if request.path == '/entreprise' %}active{% endif %}" href="/entreprise">
+                
+                <a class="navbar-item has-text-white {% if request.path == 'entreprise/' %}active{% endif %}" href="/entreprise/">
                     L'Entreprise
-                </a>
+                </a>                
             </div>
         </div>
     </nav>
@@ -120,5 +137,93 @@
         });
     });
     </script>
+
+    <footer class="footer has-background-link-dark" id="footer" style="padding: 1rem;">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-3">
+                    <h4 class="title is-4 has-text-white" id="plan-title">Plan du site</h4>
+                    <nav>
+                        <ul id="plan-links" class="is-flex is-flex-direction-column" style="list-style: none; padding-left: 0; gap: 0.2rem;">
+                            <!-- Les liens seront ajoutés par JavaScript -->
+                        </ul>
+                    </nav>
+                </div>
+                <div class="column is-3">
+                    <h4 class="title is-4 has-text-white" id="linkedin-title">Lien LinkedIn</h4>
+                    <a href="#" id="linkedin-link" class="has-text-white">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <style>
+        #footer {
+            background: linear-gradient(to right, #0d47a1, #42a5f5); /* Dégradé de bleu foncé à bleu clair */
+        }
+        
+        #plan-links a {
+            transition: color 0.3s ease;
+            color: white;
+        }
+    
+        #plan-links a:hover {
+            color: purple;
+        }
+    </style>
+    
+    
+    <script>
+        // Liens du plan du site
+        const planSiteLinks = [
+            { title: 'Accueil', url: '/' },
+            { title: 'A propos de moi', url: '/about' },
+            { title: 'La Ville de Reims', url: '/reims' },
+            { title: 'La Métallurgie', url: '/metallurgie' },
+            { title: "L'Entreprise", url: '/entreprise' }
+        ];
+    
+        // Met à jour les liens du plan du site dans le footer
+        const updatePlanSiteLinks = () => {
+            const planLinks = document.getElementById('plan-links');
+            planLinks.innerHTML = ''; // Efface les liens existants
+    
+            planSiteLinks.forEach(link => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.textContent = link.title;
+                a.className = 'has-text-white';  // Ajoute la classe 'has-text-white' pour rendre le texte blanc
+                li.appendChild(a);
+                planLinks.appendChild(li);
+            });
+        };
+    
+        // Met à jour le lien LinkedIn dans le footer
+        const updateLinkedInLink = () => {
+            const linkedinLink = document.getElementById('linkedin-link');
+            linkedinLink.href = 'https://www.linkedin.com/';
+            linkedinLink.target = '_blank';
+            linkedinLink.textContent = 'Lien LinkedIn';
+            linkedinLink.className = 'has-text-white';  // Ajoute la classe 'has-text-white' pour rendre le texte blanc
+        };
+    
+        // Applique un dégradé de couleurs au footer
+        const applyGradientColor = () => {
+            const footer = document.getElementById('footer');
+            const gradientColors = ['lightblue', 'lightgreen'];
+            const randomColor = gradientColors[Math.floor(Math.random() * gradientColors.length)];
+            footer.style.background = `linear-gradient(to right, ${randomColor})`;
+        };
+    
+        // Met à jour le contenu du footer et applique le dégradé de couleurs au chargement de la page
+        window.addEventListener('load', () => {
+            updatePlanSiteLinks();
+            updateLinkedInLink();
+            applyGradientColor();
+        });
+    </script>
 </body>
 </html>
+    
+

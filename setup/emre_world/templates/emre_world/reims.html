@@ -2,15 +2,42 @@
 
 {% block content %}
 
+    <style>
+        .article-header {
+            margin-top: 80px;  /* Ajouter une marge en haut de l'article-header */
+            margin-bottom: 80px;  /* Ajouter une marge en bas de l'article-header */
+        }
+
+        /* Ou vous pouvez ajouter une marge en haut de l'article-content */
+        
+        .article-content {
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+          
+        li {
+            margin-bottom: 10px;
+        }
+
+        .article-content {
+            line-height: 1.5;
+        }
+          
+        
+    </style>
+
     {% for article in articles %}
         <div class="article">
             <div class="article-header">
                 <h1>{{ article.title }}</h1>
                 <h2>{{ article.subtitle }}</h2>
-                <img src="{{ article.image.url }}" alt="{{ article.title }}">
             </div>
             <div class="article-content">
-                <p>{{ article.content }}</p>
+                <p>{{ article.content|safe }}</p>
             </div>
         </div>
     {% endfor %}
