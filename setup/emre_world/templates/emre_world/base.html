@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,22 +87,25 @@
         .navbar-item:focus,
         .navbar-item.is-focused {
             background-color: #209bed !important;
+            transition: background-color 0.3s ease-in-out;
         }
         footer.footer {
             margin-top: 5rem; /* Ajoute une marge supérieure de 2rem */
         }
+
     </style>
 </head>
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item has-text-white" href="/">
-                <h1 class="title is-4">Le Monde d'Emre</h1>
+            <a class="navbar-item" href="/" style="margin-left: 5em;">
+                <img src="{% static 'images/emre.png' %}" alt="Logo" style="height:30px; width:30px; margin-right: 10px; border-radius: 5px;">
+                <h1 class="title is-4" style="color: white;">Le Monde d'Emre</h1>
             </a>
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-end">
+            <div class="navbar-end" style="margin-right: 5em;">
                 <a class="navbar-item has-text-white {% if request.path == 'about/' %}active{% endif %}" href="/about/">
                     A propos de moi
                 </a>

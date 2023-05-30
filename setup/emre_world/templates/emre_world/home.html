@@ -33,6 +33,17 @@
         
         .navbar-item:hover::before {
             left: 0;
+            background: red;
+        }
+        
+        .navbar-item a {
+            display: block;
+            color: white;
+        }
+
+        .navbar-item:hover {
+            background: #209bed;  /* ajustez la couleur ici */
+            transition: background-color 0.3s ease-in-out;
         }
 
         .center-container {
@@ -111,7 +122,7 @@
         }
 
         body {
-            background-image: url("{% static 'images/fire.png' %}");
+            background-image: url("{% static 'images/steel.png' %}");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -122,37 +133,38 @@
         }
 
         nav.navbar {
-            background-color: lightblue;
+            background: linear-gradient(to right, lightblue, blue);
         }
-
         
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top navbar-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-                <h1 class="title is-4">Le Monde d'Emre</h1>
+            <a class="navbar-item" href="/" style="margin-left: 5em;">
+                <img src="{% static 'images/emre.png' %}" alt="Logo" style="height:30px; width:30px; margin-right: 10px; border-radius: 5px;">
+                <h1 class="title is-4" style="color: white;">Le Monde d'Emre</h1>
             </a>
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-end">
-                <a class="navbar-item" href="/about">
-                    A propos de moi
-                </a>
-
-                <a class="navbar-item" href="/reims">
-                    La Ville de Reims
-                </a>
-
-                <a class="navbar-item" href="/metallurgie">
-                    La Métallurgie
-                </a>
-
-                <a class="navbar-item" href="/entreprise">
-                    L'Entreprise
-                </a>
+            <div class="navbar-end" style="margin-right: 5em;">
+                <div class="navbar-item">
+                    <a href="/about">A propos de moi</a>
+                </div>
+                
+                <div class="navbar-item">
+                    <a href="/reims">La Ville de Reims</a>
+                </div>
+                
+                <div class="navbar-item">
+                    <a href="/metallurgie">La Métallurgie</a>
+                </div>
+                
+                <div class="navbar-item">
+                    <a href="/entreprise">L'Entreprise</a>
+                </div>
+                
             </div>
         </div>
     </nav>
