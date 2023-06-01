@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-0!nv5etxkfpkr*j6@ymn1i+b_g+$yehpbi4d@pealtwq)=olta
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -156,7 +156,8 @@ TINYMCE_DEFAULT_CONFIG = {
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/enes/Documents/DevOpsProjectEmreWorld/setup/media'
+# MEDIA_ROOT = '/home/enes/Documents/DevOpsProjectEmreWorld/setup/media'
+MEDIA_ROOT = '/app/media'
 
 FILEBROWSER_DIRECTORY = ''
 DIRECTORY = ''
