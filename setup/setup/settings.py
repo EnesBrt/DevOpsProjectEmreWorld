@@ -30,12 +30,13 @@ SECRET_KEY = 'django-insecure-0!nv5etxkfpkr*j6@ymn1i+b_g+$yehpbi4d@pealtwq)=olta
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.36']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'emre_world',
     'tinymce',
-    'filebrowser',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -133,6 +135,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880 # 5 MB
+
 TINYMCE_DEFAULT_CONFIG = {
     'custom_undo_redo_levels': 100,
     'selector': 'textarea',
@@ -152,12 +156,11 @@ TINYMCE_DEFAULT_CONFIG = {
     "height": "600px",
     'image_caption': True,
     # 'file_browser_callback': 'mce_filebrowser',  # Commented out this line.
+    'file_browser_callback': 'django.filebrowser.tinymce3.urlconverter',  # This line has been added.
 }
 
 
-MEDIA_URL = '/media/'
-# MEDIA_ROOT = '/home/enes/Documents/DevOpsProjectEmreWorld/setup/media'
-MEDIA_ROOT = '/app/media'
-
 FILEBROWSER_DIRECTORY = ''
 DIRECTORY = ''
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

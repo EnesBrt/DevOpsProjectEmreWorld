@@ -1,9 +1,7 @@
 asgiref==3.6.0
 Django==4.2.1
 django-ckeditor==6.5.1
-django-filebrowser==4.0.2
-django-filebrowser-no-grappelli==4.0.1
-django-grappelli==3.0.6
+django-filebrowser-no-grappelli
 django-js-asset==2.0.0
 django-tinymce
 easy-thumbnails==2.8.5

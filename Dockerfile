@@ -7,18 +7,21 @@ WORKDIR /app
 # Copie les fichiers du projet dans le répertoire de travail
 COPY . /app
 
-RUN mkdir -p /app/media
+# Crée le répertoire media dans le conteneur
+RUN mkdir -p /app/media/uploads
+
+# Change les permissions du répertoire media
+RUN chmod -R 777 /app/media/uploads
+
+VOLUME ["/home/enes/Documents/DevOpsProjectEmreWorld/setup/media/uploads"]
+
 
 # Expose le port 8000
 EXPOSE 8000
 
-# Désinstalle et réinstalle django-filebrowser
-RUN pip uninstall -y django-filebrowser
-RUN pip install django-filebrowser
+# Installe les dépendances
+RUN pip install -r /app/requirements.txt
 
-# Installe les autres dépendances de votre projet
-RUN pip install -r requirements.txt
-
-# Définit la commande à exécuter quand le conteneur démarre
+# Lance le serveur web
 CMD ["python", "/app/setup/manage.py", "runserver", "0.0.0.0:8000"]
 
