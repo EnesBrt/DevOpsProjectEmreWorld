@@ -13,14 +13,14 @@ RUN mkdir -p /app/media/uploads
 # Change les permissions du répertoire media
 RUN chmod -R 777 /app/media/uploads
 
-VOLUME ["/home/enes/Documents/DevOpsProjectEmreWorld/setup/media/uploads"]
-
-
 # Expose le port 8000
 EXPOSE 8000
 
 # Installe les dépendances
 RUN pip install -r /app/requirements.txt
+
+# Définit un volume pour le répertoire media
+VOLUME /app/media/uploads
 
 # Lance le serveur web
 CMD ["python", "/app/setup/manage.py", "runserver", "0.0.0.0:8000"]
