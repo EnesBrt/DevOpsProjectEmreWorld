@@ -26,8 +26,6 @@
         .article-content {
             line-height: 1.5;
         }
-          
-        
     </style>
 
     {% for article in articles %}
@@ -36,9 +34,7 @@
                 <h1>{{ article.title }}</h1>
                 <h2>{{ article.subtitle }}</h2>
             </div>
-            <div class="article-content">
-                <p>{{ article.content|safe }}</p>
-            </div>
+            <div class="article-content">{{ article.content|safe }}</div>
         </div>
     {% endfor %}
 

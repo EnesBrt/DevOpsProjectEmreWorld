@@ -30,13 +30,12 @@ SECRET_KEY = 'django-insecure-0!nv5etxkfpkr*j6@ymn1i+b_g+$yehpbi4d@pealtwq)=olta
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.36']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,8 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'emre_world',
     'tinymce',
-    
-    
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +83,7 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': '/app/db.sqlite3',
     }
 }
 
@@ -124,27 +122,42 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+AWS_STORAGE_BUCKET_NAME = 'emreworld'
+
+
+AWS_ACCESS_KEY_ID = 'AKIA4RVK52JEM2THHAM6'  # Votre ID de clé d'accès AWS 
+AWS_SECRET_ACCESS_KEY = 'k5Vz9dJMCIJIubOWkvMygTOrIZBeB3vqxs7sbLj8'  # Votre clé d'accès secrète AWS 
+AWS_STORAGE_BUCKET_NAME = 'emreworld'  # Le nom de votre bucket AWS S3
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+
 STATICFILES_DIRS = [
-    BASE_DIR / 'emre_world' / 'static',
+    os.path.join(BASE_DIR, 'emre_world', 'static'),
 ]
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = "https://%s.s3.amazonaws.com/media/" % AWS_STORAGE_BUCKET_NAME
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880 # 5 MB
-
 TINYMCE_DEFAULT_CONFIG = {
     'custom_undo_redo_levels': 100,
     'selector': 'textarea',
     "menubar": "file edit view insert format tools table help",
-    'plugins': 'link image preview codesample contextmenu table code lists fullscreen',
+    'plugins': 'link image preview codesample contextmenu table code lists fullscreen image code',
     'toolbar1': 'undo redo | backcolor casechange permanentpen formatpainter removeformat formatselect fontselect fontsizeselect',
     'toolbar2': 'bold italic underline blockquote | alignleft aligncenter alignright alignjustify '
-               '| bullist numlist | outdent indent | table | link image | codesample | preview code | tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry',
+                '| bullist numlist | outdent indent | table | link image | codesample | preview code | tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry',
     'contextmenu': 'formats | link image',
     'block_formats': 'Paragraph=p; Header 1=h1; Header 2=h2',
     'fontsize_formats': "8pt 10pt 12pt 14pt 16pt 18pt",
@@ -155,12 +168,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'width': 'auto',
     "height": "600px",
     'image_caption': True,
-    # 'file_browser_callback': 'mce_filebrowser',  # Commented out this line.
-    'file_browser_callback': 'django.filebrowser.tinymce3.urlconverter',  # This line has been added.
+    'images_upload_url': '/upload_image/',  # Nouvelle ligne
 }
 
-
-FILEBROWSER_DIRECTORY = ''
-DIRECTORY = ''
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
