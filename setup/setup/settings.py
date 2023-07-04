@@ -125,8 +125,8 @@ USE_TZ = True
 AWS_STORAGE_BUCKET_NAME = 'emreworld'
 
 
-AWS_ACCESS_KEY_ID = 'AKIA4RVK52JEM2THHAM6'  # Votre ID de clé d'accès AWS 
-AWS_SECRET_ACCESS_KEY = 'k5Vz9dJMCIJIubOWkvMygTOrIZBeB3vqxs7sbLj8'  # Votre clé d'accès secrète AWS 
+AWS_ACCESS_KEY_ID = ''  # Votre ID de clé d'accès AWS 
+AWS_SECRET_ACCESS_KEY = ''  # Votre clé d'accès secrète AWS 
 AWS_STORAGE_BUCKET_NAME = 'emreworld'  # Le nom de votre bucket AWS S3
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
